@@ -8,8 +8,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/MarkerCluster.css">
-        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -32,7 +30,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/Eventos_1.js"></script>
         <script>
         var map = L.map('map', {
@@ -63,34 +60,46 @@
         function pop_Eventos_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Categoría</th>\
-                        <td>' + (feature.properties['Categoría'] !== null ? autolinker.link(feature.properties['Categoría'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['DESCRIPCIÓN'] !== null ? autolinker.link(feature.properties['DESCRIPCIÓN'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Info'] !== null ? autolinker.link(feature.properties['Info'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Fuente</th>\
+                        <td>' + (feature.properties['FUENTE'] !== null ? autolinker.link(feature.properties['FUENTE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Source</th>\
-                        <td>' + (feature.properties['Source'] !== null ? autolinker.link(feature.properties['Source'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Fecha</th>\
+                        <td>' + (feature.properties['FECHA'] !== null ? autolinker.link(feature.properties['FECHA'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Estado</th>\
-                        <td>' + (feature.properties['Estado'] !== null ? autolinker.link(feature.properties['Estado'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Categoría(s)</th>\
+                        <td>' + (feature.properties['CATEGORIAS'] !== null ? autolinker.link(feature.properties['CATEGORIAS'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_Eventos_1_0(feature) {
-            switch(String(feature.properties['Categoría'])) {
-                case 'Soberanía alimentaria':
+            switch(String(feature.properties['q2wHide_CAT1'])) {
+                case 'Avance Extractivista':
                     return {
                 pane: 'pane_Eventos_1',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/5-sobrania_alimentaria.svg',
-            iconSize: [38.0, 38.0]
+            iconUrl: 'markers/7-extractivismo.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Control territorial':
+                    return {
+                pane: 'pane_Eventos_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/2-control_territorial.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
         }),
                 interactive: true,
             }
@@ -102,55 +111,55 @@
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/1-religion.svg',
-            iconSize: [38.0, 38.0]
+            iconSize: [26.599999999999998, 26.599999999999998]
         }),
                 interactive: true,
             }
                     break;
-                case 'Violencia estatal/política':
-                    return {
-                pane: 'pane_Eventos_1',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/4-violencias_estadal.svg',
-            iconSize: [38.0, 38.0]
-        }),
-                interactive: true,
-            }
-                    break;
-                case 'Patrimonio sanitario':
-                    return {
-                pane: 'pane_Eventos_1',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/3-sanitarias.svg',
-            iconSize: [38.0, 38.0]
-        }),
-                interactive: true,
-            }
-                    break;
-                case 'Control territorial':
-                    return {
-                pane: 'pane_Eventos_1',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/7-extractivismo.svg',
-            iconSize: [38.0, 38.0]
-        }),
-                interactive: true,
-            }
-                    break;
-                case 'Necesidades':
+                case 'Necesidades y Solidaridad territorial (Trafkintu)':
                     return {
                 pane: 'pane_Eventos_1',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
             iconUrl: 'markers/6-necesidades.svg',
-            iconSize: [38.0, 38.0]
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Patrimonio sanitario ancestral':
+                    return {
+                pane: 'pane_Eventos_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/3-sanitarias.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Soberanía alimentaria':
+                    return {
+                pane: 'pane_Eventos_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/5-sobrania_alimentaria.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'Violencia política':
+                    return {
+                pane: 'pane_Eventos_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/4-violencias_estadal.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
         }),
                 interactive: true,
             }
@@ -175,13 +184,9 @@
                 return L.marker(latlng, style_Eventos_1_0(feature));
             },
         });
-        var cluster_Eventos_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
-        cluster_Eventos_1.addLayer(layer_Eventos_1);
-
         bounds_group.addLayer(layer_Eventos_1);
-        cluster_Eventos_1.addTo(map);
-            var abstract = new L.Control({'position':'bottomright'});
+        map.addLayer(layer_Eventos_1);
+            var abstract = new L.Control({'position':'bottomleft'});
             abstract.onAdd = function (map) {
                 this._div = L.DomUtil.create('div',
                 'leaflet-control abstract');
@@ -199,11 +204,11 @@
                 abstract.show = function () {
                     this._div.classList.remove("abstract");
                     this._div.classList.add("abstractUncollapsed");
-                    this._div.innerHTML = 'Mapuexpress y el Centro Nacional de Investigación para la Gestión Integrada de Desastres Naturales (CIGIDEN) te invitan a comunicarnos y potenciar la forma como nuestro Pueblo Mapuche enfrenta esta Pandemia del Covid-19. Súmate a conformar esta base de datos de trabajo colaborativo para saber cómo Wallmapu enfrenta al Coronavirus. Te invitamos a llenar este formulario que es confidencial: https://cuestionario.com';
+                    this._div.innerHTML = 'Mapuexpress y el CIGIDEN te invitan a comunicarnos y potenciar la forma como nuestro Pueblo Mapuche enfrenta esta Pandemia del Covid-19. Súmate a conformar esta base de datos de trabajo colaborativo para saber cómo Wallmapu enfrenta al Coronavirus. Te invitamos a llenar este formulario que es confidencial: https://canvis.app/covid-in-wallmapu';
             };
             abstract.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Eventos<br /><table><tr><td style="text-align: center;" ><img src="legend/Eventos_1_Soberaníaalimentaria0.png" width="20" height="20" /></td><td>Soberanía alimentaria</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Defensaespiritual1.png" width="20" height="20" /></td><td>Defensa espiritual</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Violenciaestatalpolítica2.png" width="20" height="20" /></td><td>Violencia estatal/política</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Patrimoniosanitario3.png" width="20" height="20"/></td><td>Patrimonio sanitario</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Controlterritorial4.png" width="20" height="20"/></td><td>Control territorial</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Necesidades5.png" width="20" height="20"/></td><td>Necesidades</td></tr></table>': cluster_Eventos_1,"OSM-BW": layer_OSMBW_0,}).addTo(map);
+        L.control.layers(baseMaps,{'Eventos<br /><table><tr><td style="text-align: center;"><img src="legend/Eventos_1_AvanceExtractivista0.png" /></td><td>Avance Extractivista</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Controlterritorial1.png" /></td><td>Control territorial</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Defensaespiritual2.png" /></td><td>Defensa espiritual</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_NecesidadesySolidaridadterritorialTrafkintu3.png" /></td><td>Necesidades y Solidaridad territorial (Trafkintu)</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Patrimoniosanitarioancestral4.png" /></td><td>Patrimonio sanitario ancestral</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Soberaníaalimentaria5.png" /></td><td>Soberanía alimentaria</td></tr><tr><td style="text-align: center;"><img src="legend/Eventos_1_Violenciapolítica6.png" /></td><td>Violencia política</td></tr></table>': layer_Eventos_1,"OSM-BW": layer_OSMBW_0,}).addTo(map);
         setBounds();
         </script>
     </body>
